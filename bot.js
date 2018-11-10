@@ -155,6 +155,8 @@ client.on('message', async msg => {
 /////////////////					
 					try {
 
+		serverQueue.connection.dispatcher.end('Ok, joined!');
+						
 						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
 							time: 15000,
