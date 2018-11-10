@@ -342,4 +342,4 @@ client.on('message', message => {
     }
 });
 
-client.login(process.env.NTEwMTU4MDc1NDc5NTg4ODY1.DsioMw.y9dfrpfpvg3XFhwkX9T3xIC8EWQ);
+client.login(process.NTEwMTU4MDc1NDc5NTg4ODY1.DsioMw.y9dfrpfpvg3XFhwkX9T3xIC8EWQ);
