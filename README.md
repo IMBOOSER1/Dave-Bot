@@ -1,2 +1,2 @@
 # Dojo
-Music Bot
+Dojo Bot
