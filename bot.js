@@ -7,8 +7,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
+  if (msg.content === 'Hi') {
+    msg.reply('Hi!');
   }
 });
 
@@ -26,7 +26,7 @@ client.on('ready', () => {
 // Create an event listener for messages
 client.on('message', message => {
   // If the message is "what is my avatar"
-  if (message.content === 'what is my avatar') {
+  if (message.content === 'avatar') {
     // Send the user's avatar URL
     message.reply(message.author.avatarURL);
   }
