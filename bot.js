@@ -1256,7 +1256,7 @@ if(julian.content.startsWith(prefix + 'cc')) {
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
-});
+
 
 
 
