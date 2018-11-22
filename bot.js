@@ -12,10 +12,6 @@ client.on('message', msg => {
   }
 });
 
-client.on('ready', () => {
-  console.log('I am ready!');
-});
-
 client.on('message', message => {
   // Ignore messages that aren't from a guild
   if (!message.guild) return;
@@ -56,10 +52,6 @@ client.on('message', message => {
       message.reply('You didn\'t mention the user to kick!');
     }
   }
-});
-
-client.on('ready', () => {
-  console.log('I am ready!');
 });
 
 client.on('message', message => {
