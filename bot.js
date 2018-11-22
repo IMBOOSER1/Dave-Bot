@@ -12,20 +12,6 @@ client.on('message', msg => {
   }
 });
 
-
-
-
-
-
-
-
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-});
-
 client.on('message', msg => {
   if (msg.content === 'ط§ظ„ط³ظ„ط§ظ… ط¹ظ„ظٹظƒظ…') {
     msg.reply('ظˆط¹ظ„ظٹظƒظ… ط§ظ„ط³ظ„ط§ظ… ظˆ ط±ط­ظ…ط© ط§ظ„ظ„ظ‡ ظˆ ط¨ط±ظƒط§طھظ‡');
