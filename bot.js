@@ -860,18 +860,13 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 	
 	
 	
-	
-	
-	
-	
+
 	
 
  
 
 	
 
-	
-	
 	
 	
 	
@@ -1229,7 +1224,6 @@ if(julian.content.startsWith(prefix + 'cc')) {
     let reason = args.slice(1).join(' ');
     if(!reason) reason = "No reason provided";
     
-    await member.kick(reason)
       .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
     message.reply(`${member.user.tag} has been kicked by ${message.author.tag} because: ${reason}`);
 
