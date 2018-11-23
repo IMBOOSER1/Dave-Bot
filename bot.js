@@ -8,7 +8,7 @@ client.on('ready', () => {
 
 client.on('message', msg => {
   if (msg.content === 'Hi') {
-    msg.reply('Hi!');
+    msg.reply('Hi');
   }
 });
 
@@ -125,41 +125,50 @@ client.on('message', msg => {
 
 
 
-var prefix = "="
 client.on('message', message => {
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
- 
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
- 
-  let args = message.content.split(" ").slice(1);
- 
-  if (command == "ban") {
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
+  // Ignore messages that aren't from a guild
+  if (!message.guild) return;
 
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
-  if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
-  /*let b5bzlog = client.channels.find("name", "5bz-log");
-  if(!b5bzlog) return message.reply("I've detected that this server doesn't have a 5bz-log text channel.");*/
-  if (message.mentions.users.size < 1) return message.reply("**منشن شخص**");
-  if (!message.guild.member(user)
-  .bannable) return message.reply("**لا يمكنني اعطاء بان لاحد ادارة السيرفر**");
-  message.guild.member(user).ban(7, user);
- 
-  const banembed = new Discord.RichEmbed()
-  .setAuthor(`BANNED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + ` تم طرده من السيرفر ` + ' ]**')
-  message.channel.send({
-    embed : banembed
-  })
-}
+  // if the message content starts with "!ban"
+  if (message.content.startsWith('#ban')) {
+    // Assuming we mention someone in the message, this will return the user
+    // Read more about mentions over at https://discord.js.org/#/docs/main/stable/class/MessageMentions
+    const user = message.mentions.users.first();
+    // If we have a user mentioned
+    if (user) {
+      // Now we get the member from the user
+      const member = message.guild.member(user);
+      // If the member is in the guild
+      if (member) {
+        /**
+         * Ban the member
+         * Make sure you run this on a member, not a user!
+         * There are big differences between a user and a member
+         * Read more about what ban options there are over at
+         * https://discord.js.org/#/docs/main/stable/class/GuildMember?scrollTo=ban
+         */
+        member.ban({
+          reason: 'They were bad!',
+        }).then(() => {
+          // We let the message author know we were able to ban the person
+          message.reply(`Successfully banned ${user.tag}`);
+        }).catch(err => {
+          // An error happened
+          // This is generally due to the bot not being able to ban the member,
+          // either due to missing permissions or role hierarchy
+          message.reply('I was unable to ban the member');
+          // Log the error
+          console.error(err);
+        });
+      } else {
+        // The mentioned user isn't in this guild
+        message.reply('That user isn\'t in this guild!');
+      }
+    } else {
+    // Otherwise, if no user was mentioned
+      message.reply('You didn\'t mention the user to ban!');
+    }
+  }
 });
 	
 	
@@ -178,7 +187,7 @@ client.on('message', message => {
 	
 	
 	client.on('message', function(msg) {
-    const prefix = '='
+    const prefix = '#'
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
@@ -211,7 +220,7 @@ client.on('message', message => {
 	
 	
 	client.on('message', message =>{
-    if(message.content === '=ping'){
+    if(message.content === '#ping'){
 let start = Date.now(); message.channel.send('pong').then(message => { 
 message.edit(`\`\`\`js
 Time taken: ${Date.now() - start} ms
@@ -240,7 +249,7 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
 	
 	const HeRo = new Discord.Client();
 client.on('message', message => {
-var prefix = "=";
+var prefix = "#";
 
     if (message.content === prefix + "date") {
         if (!message.channel.guild) return message.reply('** This command only for servers **');  
@@ -272,7 +281,7 @@ var prefix = "=";
 	
 	
 	client.on('message', Sal => { // By Salto7#4595
-  if(Sal.content === '=bot') { //هنا تغير البرفيكس
+  if(Sal.content === '#bot') { //هنا تغير البرفيكس
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
   .setThumbnail(client.user.avatarURL)
@@ -297,43 +306,7 @@ var prefix = "=";
 	
 	
 	
-	client.on('message' , message => {
-  var prefix = "=";
-  if(message.author.bot) return;
-  if(message.content.startsWith(prefix + "send")) {
-    let args = message.content.split(" ").slice(1);
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-
-    let suggestmessage = args.join(" ").slice(22);
-    let suggestchannel = message.mentions.channels.first();
-
-    if (!suggestchannel) {
-        return message.reply("Please Mention the channel!")
-    }
-
-    if (!suggestmessage) {
-        return message.reply("Plase Give Text To send Channel!")
-    
-         
-    }
-     message.delete();
-suggestchannel.send("@everyone  `||` @here ");
-    let embed = new Discord.RichEmbed()
-        .addField("**", `${suggestmessage}`)
-        .setFooter(`by ${message.author.tag}`)
-        .setTimestamp()
-    suggestchannel.send({
-        embed
-    }).then(msg => {
-        msg.react("✅").then(r => msg.react("❎"))
-    });
-
-
-    message.reply(`Your message is sended.`).then(msg => msg.delete(1000));
-    return;
-}
-});
+	
 	
 	
 	
@@ -349,7 +322,7 @@ suggestchannel.send("@everyone  `||` @here ");
 	
 	client.on ('message',async Sal => { //By Salto7#4595
     let embed = new Discord.RichEmbed()
-    if (Sal.content === "=id") {
+    if (Sal.content === "#id") {
       let embed = new Discord.RichEmbed()
      .setColor("RANDOM")
      .setThumbnail(Sal.author.avatarURL)
@@ -375,7 +348,7 @@ suggestchannel.send("@everyone  `||` @here ");
 	
 	  client.on('message',function(message) {
   if (message.author.bot) return;
-var prefix = "=";
+var prefix = "#";
                   if(!message.channel.guild) return;
 
                     if (message.content === prefix + "members") {
@@ -410,7 +383,7 @@ var prefix = "=";
     var command = message.content.toLowerCase().split(" ")[0]; // حقوق الفا كوودز Alpha Codes.
     var args = message.content.toLowerCase().split(" ");
     var userM = message.guild.member(message.mentions.users.first() || message.guild.members.find(m => m.id === args[1]));
-    var prefix = '='; // هنا تقدر تغير البرفكس <==================
+    var prefix = '#'; // هنا تقدر تغير البرفكس <==================
    
     if(command == prefix + 'role') {
         if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_ROLES** Permission!');
@@ -747,37 +720,45 @@ var prefix = "=";
 	
 	
 	client.on('message', message => {
-const prefix = "=";
-  if (message.author.kick) return;
-  if (!message.content.startsWith(prefix)) return;
- 
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
- 
-  let args = message.content.split(" ").slice(1);
- 
-  if (command == "kick") {
-               if(!message.channel.guild) return;
-         if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
+  // Ignore messages that aren't from a guild
+  if (!message.guild) return;
 
-  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("You Don't Have KICK_MEMBERS Permission").then(msg => msg.delete(5000));
-  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("I Don't Have KICK_Members Permission");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
- 
-  if (message.mentions.users.size < 1) return message.reply("منشن شخص");
-  if (!message.guild.member(user)
-  .bannable) return message.reply("لا يمكنني طرد احد ادارة السيرفر");
- 
-  message.guild.member(user).kick(7, user);
- 
-  const banembed = new Discord.RichEmbed()
-  .setAuthor('Kicked !', user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("Reason:", `[ + تم طرده من السيرفر +  ]`)
-  client.channels.get("495222310131990539").send({embed : banembed})
-}
+  // If the message content starts with "!kick"
+  if (message.content.startsWith('#kick')) {
+    // Assuming we mention someone in the message, this will return the user
+    // Read more about mentions over at https://discord.js.org/#/docs/main/stable/class/MessageMentions
+    const user = message.mentions.users.first();
+    // If we have a user mentioned
+    if (user) {
+      // Now we get the member from the user
+      const member = message.guild.member(user);
+      // If the member is in the guild
+      if (member) {
+        /**
+         * Kick the member
+         * Make sure you run this on a member, not a user!
+         * There are big differences between a user and a member
+         */
+        member.kick('Optional reason that will display in the audit logs').then(() => {
+          // We let the message author know we were able to kick the person
+          message.reply(`Successfully kicked ${user.tag}`);
+        }).catch(err => {
+          // An error happened
+          // This is generally due to the bot not being able to kick the member,
+          // either due to missing permissions or role hierarchy
+          message.reply('I was unable to kick the member');
+          // Log the error
+          console.error(err);
+        });
+      } else {
+        // The mentioned user isn't in this guild
+        message.reply('That user isn\'t in this guild!');
+      }
+    // Otherwise, if no user was mentioned
+    } else {
+      message.reply('You didn\'t mention the user to kick!');
+    }
+  }
 });
 	
 	
@@ -793,34 +774,7 @@ const prefix = "=";
 	
 	
 
-	client.on('message', message => {
-
-    if (message.content === "قفل") {
-                        if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-
-           }).then(() => {
-               message.reply("تم تقفيل الشات ✅ ")
-           });
-             }
-if (message.content === "فتح") {
-    if(!message.channel.guild) return message.reply(' هذا الامر فقط للسيرفرات !!');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-
-           }).then(() => {
-               message.reply("تم فتح الشات✅")
-           });
-             }
-
-
-
-});
+	
 	
 	
 	
@@ -833,7 +787,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
 	
 	
 	client.on('message', message => {
-    if (message.content.startsWith("=avatar")) {
+    if (message.content.startsWith("#avatar")) {
         if (message.author.bot) return
         var mentionned = message.mentions.users.first();
     var omar;
@@ -1040,7 +994,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 	
 
 client.on('ready', () => {
-     client.user.setActivity("Dant Bot",{type: 'PLAYING'});
+     client.user.setActivity("Dojo Bot",{type: 'PLAYING'});
 
 });
 
@@ -1058,7 +1012,7 @@ client.on('ready', () => {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Dant Bot`,"https://www.twitch.tv/settings/profile")
+client.user.setGame(`Dojo Bot`,"https://www.twitch.tv/settings/profile")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -1100,7 +1054,7 @@ client.user.setGame(`Dant Bot`,"https://www.twitch.tv/settings/profile")
 
 
   client.on('message', message => {
-    var prefix = "="
+    var prefix = "#"
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + 'me')) {
 var year = message.author.createdAt.getFullYear()
@@ -1164,7 +1118,7 @@ message.channel.send({embed});
 	
 
 client.on('message', julian => {
-var prefix = "=";
+var prefix = "#";
                         let args = julian.content.split(" ").slice(1).join(" ")
 if(julian.content.startsWith(prefix + 'cc')) {
     if(!args) return julian.channel.send('`يرجي اختيار كم لون `');
