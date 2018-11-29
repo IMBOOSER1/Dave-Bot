@@ -1170,4 +1170,4 @@ if(julian.content.startsWith(prefix + 'cc')) {
 
 
 
-client.login('NTE1MTUyMzE2MDY0NTk1OTg3.DthB7Q.1bw2Au47nikGRv_7xIXDKI6P77Q');
+client.login('NTE3NzMyMzY3NzQyNTMzNjU0.DuHFqw.EuFYVSS1VS3781wwZZVTWJxCWVs');
