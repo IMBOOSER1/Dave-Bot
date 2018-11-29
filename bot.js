@@ -1152,12 +1152,6 @@ if(julian.content.startsWith(prefix + 'cc')) {
 	
 
 
-if(message.content === "ayy") {
-   const ayy = client.emojis.find(emoji => emoji.name === "ayy");
-   message.reply(`${ayy} LMAO`);
-}
-
-
 	
 
 
