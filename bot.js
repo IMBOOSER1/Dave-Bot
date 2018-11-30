@@ -12,11 +12,7 @@ client.on('message', msg => {
   }
 });
 
-client.on('message', msg => {
-  if (msg.content === 'السلام عليكم') {
-    msg.reply('وعليكم السلام و رحمة الله و بركاته');
-  }
-});
+
 
 
 
@@ -130,7 +126,7 @@ client.on('message', message => {
   if (!message.guild) return;
 
   // if the message content starts with "!ban"
-  if (message.content.startsWith('#ban')) {
+  if (message.content.startsWith('!ban')) {
     // Assuming we mention someone in the message, this will return the user
     // Read more about mentions over at https://discord.js.org/#/docs/main/stable/class/MessageMentions
     const user = message.mentions.users.first();
@@ -187,21 +183,21 @@ client.on('message', message => {
 	
 	
 	client.on('message', function(msg) {
-    const prefix = '#'
+    const prefix = '!'
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
       .setColor('RANDOM')
       .setThumbnail(msg.guild.iconURL)
       .setTitle(`Showing Details Of  **${msg.guild.name}*`)
-      .addField('🌐** نوع السيرفر**',`[** __${msg.guild.region}__ **]`,true)
-      .addField('🏅** __الرتب__**',`[** __${msg.guild.roles.size}__ **]`,true)
-      .addField('🔴**__ عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
-      .addField('🔵**__ عدد الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-      .addField('📝**__ الرومات الكتابية__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-      .addField('🎤**__ رومات الصوت__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-      .addField('👑**__ الأونـر__**',`**${msg.guild.owner}**`,true)
-      .addField('🆔**__ ايدي السيرفر__**',`**${msg.guild.id}**`,true)
-      .addField('📅**__ تم عمل السيرفر في__**',msg.guild.createdAt.toLocaleString())
+      .addField('🌐** Server Type**',`[** __${msg.guild.region}__ **]`,true)
+      .addField('🏅** __ Rank__**',`[** __${msg.guild.roles.size}__ **]`,true)
+      .addField('🔴**__ Number of members__**',`[** __${msg.guild.memberCount}__ **]`,true)
+      .addField('🔵**__ Number of members online__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+      .addField('📝**__ Writing Rooms__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+      .addField('🎤**__ Sound Rooms__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+      .addField('👑**__ Owner__**',`**${msg.guild.owner}**`,true)
+      .addField('🆔**__  Server ID__**',`**${msg.guild.id}**`,true)
+      .addField('📅**__ The server was done in__**',msg.guild.createdAt.toLocaleString())
       msg.channel.send({embed:embed});
     }
   });
@@ -220,7 +216,7 @@ client.on('message', message => {
 	
 	
 	client.on('message', message =>{
-    if(message.content === '#ping'){
+    if(message.content === '!ping'){
 let start = Date.now(); message.channel.send('pong').then(message => { 
 message.edit(`\`\`\`js
 Time taken: ${Date.now() - start} ms
@@ -249,7 +245,7 @@ Discord API: ${client.ping.toFixed(0)} ms\`\`\``);
 	
 	const HeRo = new Discord.Client();
 client.on('message', message => {
-var prefix = "#";
+var prefix = "!";
 
     if (message.content === prefix + "date") {
         if (!message.channel.guild) return message.reply('** This command only for servers **');  
@@ -259,7 +255,7 @@ var prefix = "#";
             Day = currentTime.getDate();
 
             var Date15= new Discord.RichEmbed()
-            .setTitle("**「  Date - التاريخ 」 **")
+            .setTitle("**「  Date  」 **")
             .setColor('RANDOM')
             .setTimestamp()
             .setDescription( "「"+ Day + "-" + Month + "-" + Year + "」")
@@ -281,7 +277,7 @@ var prefix = "#";
 	
 	
 	client.on('message', Sal => { // By Salto7#4595
-  if(Sal.content === '#bot') { //هنا تغير البرفيكس
+  if(Sal.content === '!bot') { //هنا تغير البرفيكس
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
   .setThumbnail(client.user.avatarURL)
@@ -322,15 +318,15 @@ var prefix = "#";
 	
 	client.on ('message',async Sal => { //By Salto7#4595
     let embed = new Discord.RichEmbed()
-    if (Sal.content === "#id") {
+    if (Sal.content === "!id") {
       let embed = new Discord.RichEmbed()
      .setColor("RANDOM")
      .setThumbnail(Sal.author.avatarURL)
      .setImage(Sal.author.avatarURL)
-     .addField("اسمك:",`${Sal.author.username}`, true)
-     .addField('ايديك:',"" +  Sal.author.id, true)
-     .addField('تاقك', Sal.author.discriminator, true)
-     .addField('تم الانشاء في', Sal.author.createdAt, true)
+     .addField("Your name:",`${Sal.author.username}`, true)
+     .addField('ID:',"" +  Sal.author.id, true)
+     .addField('Tag', Sal.author.discriminator, true)
+     .addField('Created in', Sal.author.createdAt, true)
      Sal.channel.sendEmbed(embed);
     }
   });
@@ -348,7 +344,7 @@ var prefix = "#";
 	
 	  client.on('message',function(message) {
   if (message.author.bot) return;
-var prefix = "#";
+var prefix = "!";
                   if(!message.channel.guild) return;
 
                     if (message.content === prefix + "members") {
@@ -383,7 +379,7 @@ var prefix = "#";
     var command = message.content.toLowerCase().split(" ")[0]; // حقوق الفا كوودز Alpha Codes.
     var args = message.content.toLowerCase().split(" ");
     var userM = message.guild.member(message.mentions.users.first() || message.guild.members.find(m => m.id === args[1]));
-    var prefix = '#'; // هنا تقدر تغير البرفكس <==================
+    var prefix = '!'; // هنا تقدر تغير البرفكس <==================
    
     if(command == prefix + 'role') {
         if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: | You dont have **MANAGE_ROLES** Permission!');
@@ -695,9 +691,9 @@ var prefix = "#";
     .setAuthor(Sal.user.username, Sal.user.avatarURL)
     .setThumbnail(Sal.user.avatarURL)
     .setImage('http://live-timely-4jepdssgmc.time.ly/wp-content/uploads/2018/08/welcomeEvents.jpg') //هنا حط الصوره الي تبيها
-    .setTitle('عضو جديد!')
-    .setDescription('مرحبا بك في سيرفرنا')
-    .addField(' 👤  انت العضو رقم',`**[ ${Sal.guild.memberCount} ]**`,true)
+    .setTitle('A New member!')
+    .setDescription('Welcome to our server')
+    .addField(' 👤  You are the member number',`**[ ${Sal.guild.memberCount} ]**`,true)
     .setColor('RANDOM')
     .setFooter(Sal.guild.name, Sal.guild.iconURL, true)
     var channel =Sal.guild.channels.find('name', 'general') // هنا حط اسم الروم الي تبيه يكتب فيه
@@ -724,7 +720,7 @@ var prefix = "#";
   if (!message.guild) return;
 
   // If the message content starts with "!kick"
-  if (message.content.startsWith('#kick')) {
+  if (message.content.startsWith('!kick')) {
     // Assuming we mention someone in the message, this will return the user
     // Read more about mentions over at https://discord.js.org/#/docs/main/stable/class/MessageMentions
     const user = message.mentions.users.first();
@@ -787,7 +783,7 @@ var prefix = "#";
 	
 	
 	client.on('message', message => {
-    if (message.content.startsWith("#avatar")) {
+    if (message.content.startsWith("!avatar")) {
         if (message.author.bot) return
         var mentionned = message.mentions.users.first();
     var omar;
@@ -833,18 +829,18 @@ var prefix = "#";
   let command = msg.content.split(" ")[0];
   let args = msg.content.split(" ").slice(1);
 
-    if(command === "#clear") {
+    if(command === "!clear") {
         const emoji = client.emojis.find("name", "wastebasket")
     let textxt = args.slice(0).join("");
     if(msg.member.hasPermission("MANAGE_MESSAGES")) {
     if (textxt == "") {
         msg.delete().then
-    msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها 👌```***").then(m => m.delete(3000));
+    msg.channel.send("***```Set the number of messages you want to delete 👌```***").then(m => m.delete(3000));
 } else {
     msg.delete().then
     msg.delete().then
     msg.channel.bulkDelete(textxt);
-        msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
+        msg.channel.send("```php\nNumber of messages that have been cleared: " + textxt + "\n```").then(m => m.delete(3000));
         }    
     }
 }
@@ -861,7 +857,7 @@ var prefix = "#";
 
 client.on('message', async message => {
   let args = message.content.split(" ");
-  if(message.content.startsWith(prefix + "mute")) {
+  if(message.content.startsWith(prefix + "!mute")) {
     if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.send('').then(msg => {
       msg.delete(3500);
       message.delete(3500);
@@ -910,15 +906,15 @@ client.on('message', async message => {
     });
  
     let reason = message.content.split(" ").slice(3).join(" ");
-    if(!reason) reason = " [ **لم يذكر لماذا** ] ";
+    if(!reason) reason = " [ **Did not mention why** ] ";
 
     let thisEmbed = new Discord.RichEmbed()
     .setAuthor(mention.user.username, mention.user.avatarURL)
-    .setTitle('**تم آعطائك ميوت**')
-    .addField('**__السيرفر__**',[ message.guild.name ]) //kinggamer حقوق الفا كودز و
-    .addField('**__تم آعطائك ميوت بواسطة__**', [ message.author ])
-    .addField('**__آلسبب__**',reason)
-    .addField('**__وقت الميوت__**',duration)
+    .setTitle('**Your mute was given**')
+    .addField('**__Server__**',[ message.guild.name ]) //kinggamer حقوق الفا كودز و
+    .addField('**__I was given mute by__**', [ message.author ])
+    .addField('**__Reason__**',reason)
+    .addField('**__Mute time__**',duration)
  
     let role = message.guild.roles.find('name', 'Muted') || message.guild.roles.get(r => r.name === 'Muted');
     if(!role) try {
@@ -954,7 +950,7 @@ client.on('message', async message => {
 let command = message.content.split(" ")[0];
      command = command.slice(prefix.length);
     let args = message.content.split(" ").slice(1);  //kinggamer حقوق الفا كودز و
-if(command === `unmute`) {2
+if(command === `!unmute`) {2
   if(!message.member.hasPermission("MUTE_MEMBERS")) return message.channel.sendMessage("**You Donot HavePermission Mute_Members**").then(m => m.delete(5000));
 if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return message.reply("**I donot Have Permission Mute_Members**").then(msg => msg.delete(6000))
  
@@ -966,7 +962,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
  
   let role = message.guild.roles.find (r => r.name === "Muted");
  
-  if(!role || !kinggamer.roles.has(role.id)) return message.channel.sendMessage(`**:information_source:${mention.user.username} لقد تم فك الميوت عنه مسبقا**`)
+  if(!role || !kinggamer.roles.has(role.id)) return message.channel.sendMessage(`**:information_source:${mention.user.username} It has already been unzipped**`)
  
   await kinggamer.removeRole(role) //kinggamer حقوق الفا كودز و
   message.channel.sendMessage(`**:white_check_mark: ${mention.user.username}  Unmuted! **`);
@@ -992,7 +988,7 @@ if(!message.guild.member(client.user).hasPermission("MUTE_MEMBERS")) return mess
 	
 
 client.on('ready', () => {
-     client.user.setActivity("Dojo Bot",{type: 'PLAYING'});
+     client.user.setActivity("Dave Bot",{type: 'PLAYING'});
 
 });
 
@@ -1010,7 +1006,7 @@ client.on('ready', () => {
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Dojo Bot`,"https://www.twitch.tv/settings/profile")
+client.user.setGame(`Dave-Bot`,"https://www.twitch.tv/settings/profile")
   console.log('')
   console.log('')
   console.log('╔[═════════════════════════════════════════════════════════════════]╗')
@@ -1052,7 +1048,7 @@ client.user.setGame(`Dojo Bot`,"https://www.twitch.tv/settings/profile")
 
 
   client.on('message', message => {
-    var prefix = "#"
+    var prefix = "!"
 var args = message.content.split(" ").slice(1);    
 if(message.content.startsWith(prefix + 'me')) {
 var year = message.author.createdAt.getFullYear()
@@ -1077,28 +1073,28 @@ y = `${z.presence.game.name}`;
 y = "No Playing... |💤.";
 }
 if (z.bot) {
-var w = 'بوت';
+var w = 'Bot';
 }else {
-var w = 'عضو';
+var w = 'member';
 }
 let embed = new Discord.RichEmbed()
 .setColor("#502faf")
-.addField('🔱| اسمك:',`**<@` + `${z.id}` + `>**`, true)
-.addField('🛡| ايدي:', "**"+ `${z.id}` +"**",true)
+.addField('🔱| Name:',`**<@` + `${z.id}` + `>**`, true)
+.addField('🛡| ID:', "**"+ `${z.id}` +"**",true)
 .addField('♨| Playing:','**'+y+'**' , true)
-.addField('🤖| نوع حسابك:',"**"+ w + "**",true)    
-.addField('📛| الكود حق حسابك:',"**#" +  `${z.discriminator}**`,true)
-.addField('**التاريح الذي انشئ فيه حسابك | 📆 **: ' ,year + "-"+ month +"-"+ day)    
-.addField("**تاريخ دخولك للسيرفر| ⌚   :**", message.member.joinedAt.toLocaleString())    
+.addField('🤖| Your account type:',"**"+ w + "**",true)    
+.addField('📛| Tag:',"**#" +  `${z.discriminator}**`,true)
+.addField('**The dates on which your account was created | 📆 **: ' ,year + "-"+ month +"-"+ day)    
+.addField("**The date you entered the server| ⌚   :**", message.member.joinedAt.toLocaleString())    
 
-.addField('**⌚ | تاريخ انشاء حسابك الكامل:**', message.author.createdAt.toLocaleString())
-.addField("**اخر رسالة لك | 💬  :**", message.author.lastMessage)            
+.addField('**⌚ | The date of creating your full account:**', message.author.createdAt.toLocaleString())
+.addField("**The last message for you | 💬  :**", message.author.lastMessage)            
 
 .setThumbnail(`${z.avatarURL}`)
 .setFooter(message.author.username, message.author.avatarURL)
 
 message.channel.send({embed});
-    if (!message) return message.reply('**ضع المينشان بشكل صحيح  ❌ **').catch(console.error);
+    if (!message) return message.reply('**Place the Mention properly  ❌ **').catch(console.error);
 
 }
 
@@ -1116,10 +1112,10 @@ message.channel.send({embed});
 	
 
 client.on('message', julian => {
-var prefix = "#";
+var prefix = "!";
                         let args = julian.content.split(" ").slice(1).join(" ")
 if(julian.content.startsWith(prefix + 'cc')) {
-    if(!args) return julian.channel.send('`يرجي اختيار كم لون `');
+    if(!args) return julian.channel.send('`Please choose how many colors `');
              if (!julian.member.hasPermission('MANAGE_ROLES')) return julian.channel.sendMessage(':no_entry: | You dont have **MANAGE_ROLES** Permission!'); 
               julian.channel.send(`**✅ |Created __${args}__ Colors**`);
                   setInterval(function(){})
