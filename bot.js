@@ -1084,7 +1084,7 @@ let embed = new Discord.RichEmbed()
 .addField('♨| Playing:','**'+y+'**' , true)
 .addField('🤖| Your account type:',"**"+ w + "**",true)    
 .addField('📛| Tag:',"**#" +  `${z.discriminator}**`,true)
-.addField('**The dates on which your account was created | 📆 **: ' ,year + "-"+ month +"-"+ day)    
+.addField('**The date on which your account was created | 📆 **: ' ,year + "-"+ month +"-"+ day)    
 .addField("**The date you entered the server| ⌚   :**", message.member.joinedAt.toLocaleString())    
 
 .addField('**⌚ | The date of creating your full account:**', message.author.createdAt.toLocaleString())
